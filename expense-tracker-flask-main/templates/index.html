@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>💸 Expense Tracker</h1>
+
+    {% if alert %}
+    <div class="alert">⚠️ Expense Limit Exceeded!</div>
+    {% endif %}
+
+    <div class="total">Total: ₹ {{ total }}</div>
+
+    <form method="POST">
+        <input type="number" name="amount" placeholder="Amount" required>
+
+        <select name="category" required>
+            <option>Food</option>
+            <option>Travel</option>
+            <option>Shopping</option>
+            <option>Education</option>
+            <option>Other</option>
+        </select>
+
+        <input type="text" name="note" placeholder="Note">
+        <button>Add Expense</button>
+    </form>
+
+    <form method="POST">
+        <input type="number" name="limit" placeholder="Set Monthly Limit">
+        <button name="set_limit">Set Limit</button>
+    </form>
+
+    <h2>📊 Category Totals</h2>
+    {% for c, v in category_total.items() %}
+        <div class="card">{{ c }} : ₹ {{ v }}</div>
+    {% endfor %}
+
+    <h2>📋 Expenses</h2>
+    <table>
+        <tr>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Note</th>
+            <th>Month</th>
+            <th>Delete</th>
+        </tr>
+        {% for e in expenses %}
+        <tr>
+            <td>{{ e.amount }}</td>
+            <td>{{ e.category }}</td>
+            <td>{{ e.note }}</td>
+            <td>{{ e.date }}</td>
+            <td><a href="/delete/{{ loop.index0 }}">❌</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/download" class="download">⬇ Download Report</a>
+</div>
+
+</body>
+</html>

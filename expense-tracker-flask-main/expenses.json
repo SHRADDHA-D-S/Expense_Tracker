@@ -1,0 +1,14 @@
+[
+    {
+        "amount": "25000",
+        "category": "Shopping",
+        "note": "",
+        "date": "01-02-2026"
+    },
+    {
+        "amount": 15000.0,
+        "category": "Education",
+        "note": "Books",
+        "date": "2026-02-01"
+    }
+]
